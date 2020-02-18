@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React , {Component} from 'react';
 
-function App() {
+class App extends Component {
+  render(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <img src="" />
+      <div className="reminder-title">
+        <h2>What Should You Do ?</h2>
+      </div>
+      <input 
+        className="form-control"
+        type="text"
+        placeholder="Enter What U think ...?"
+        />
+        <input 
+        className="form-control"
+        type="datetime-local"
+        />
+        <button className="btn btn-primary btn-block">Add Reminder</button>
+        <button className="btn btn-danger btn-block">Delete Reminder</button>
     </div>
   );
+}
 }
 
 export default App;
