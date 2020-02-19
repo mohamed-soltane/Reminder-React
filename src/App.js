@@ -5,12 +5,30 @@ import {connect} from 'react-redux';
 class App extends Component {
   state = {
     text: '',
-    date: new Date()
+    date: ''
   }
+  render_Reminders = () => {
+    const {reminders} = this.props ;
+      return (
+        <ul className="list-group">
+          {
+            reminders.map(reminder => {
+              return (
+                <li key={reminder.id} className='list-group-item'>
+                  <div>{reminder.text}</div>
+                
+                  <div>{reminder.date}</div>
+                </li>
+                )
+              })
+          }
+          </ul>
+          )
+          }
   render(){
   return (
     <div className="App">
-        <img src="" />
+        <img src="" alt="" />
       <div className="reminder-title">
         <h2>What Should You Do ?</h2>
       </div>
@@ -26,18 +44,26 @@ class App extends Component {
         onChange={(e) => this.setState({date: e.target.value})}
         />
         <button 
-            onClick= { () => add_Reminder(this.state.text, this.state.date)}
+            onClick= { () => this.props.add_Reminder(this.state.text, this.state.date)}
             className="btn btn-primary btn-block"
         >
           Add Reminder
         </button>
+        {this.render_Reminders()}
         <button
             className="btn btn-danger btn-block"
          >
            Delete Reminder
         </button>
+        
     </div>
   );
 }
 }
-export default connect(null , {add_Reminder})(App);
+
+export default connect(state => {
+  return {
+    reminders: state
+  }
+  } 
+  , {add_Reminder})(App);
